@@ -5,13 +5,6 @@ package entity
  *
  * It is characterized by a [CardSuit] and a [CardValue]
  */
-data class Card(val suit: CardSuit, val value: CardValue) {
-    // Card Points in the game "Swimming"
-    val cardPoints = when (value) {
-        CardValue.ACE -> 11.0
-        CardValue.JACK, CardValue.QUEEN, CardValue.KING -> 10.0
-        else -> value.toString().toDouble()
-    }
+class Card(val suit: CardSuit, val value: CardValue) {
 
-    override fun toString() = "$suit$value"
 }
