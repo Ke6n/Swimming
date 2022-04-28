@@ -3,11 +3,12 @@ package entity
 /**
  * Entity class that represents a game state of "Swimming".
  */
-class Swimming(val players: List<Player>) {
+class Swimming(val players: List<Player>, var drawPile: CardPile, var middlePile: CardPile) {
     var passCount: Int = 0
     var movesRemaining: Int = players.size
     var hasKnocked: Boolean = false
     var activePlayerIndex: Int = 0
+    var discardPile: CardPile? = null
 
     /**
      * Calculate the index of the next active player.
