@@ -1,5 +1,5 @@
 package entity
 
-class Player(val name: String, var handDeck: TripleDeck) {
+class Player(val name: String, val handDeck: TripleDeck) {
     var score: Double = 0.0
 }
