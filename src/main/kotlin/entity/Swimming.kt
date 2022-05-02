@@ -8,6 +8,7 @@ class Swimming(val players: List<Player>, val drawPile: CardPile, val middleDeck
     var movesRemaining: Int = players.size
     var hasKnocked: Boolean = false
     var activePlayerIndex: Int = 0
+        private set
     var discardPile: CardPile? = null
 
     /**
