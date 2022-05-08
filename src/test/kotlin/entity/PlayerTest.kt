@@ -1,4 +1,4 @@
-package service
+package entity
 
 import entity.*
 import kotlin.test.*
@@ -18,9 +18,12 @@ class PlayerTest {
         )
     )
 
+    /**
+     * Test if the player is not initialized with blank name
+     */
     @Test
     fun testInitPlayerWithBlankName(){
-        assertFailsWith<IllegalArgumentException> {
+        assertFailsWith<IllegalStateException> {
             Player(name1, handDeck)
         }
     }

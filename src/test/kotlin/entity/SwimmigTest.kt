@@ -1,6 +1,6 @@
-package service
+package entity
 
-import entity.*
+
 import kotlin.test.*
 
 
@@ -24,9 +24,14 @@ class SwimmigTest {
     )
     private val player1 = Player("Zoe", handDeck1)
     private val player2 = Player("Ava", handDeck2)
+    private val player3 = Player("Ben", handDeck2)
+    private val player4 = Player("Yvo", handDeck2)
+    private val player5 = Player("Cal", handDeck2)
 
 
     private val playerList = listOf(player1, player2)
+    private val shortPlayerList = listOf(player1)
+    private val longPlayerList = listOf(player1, player2, player3, player4, player5)
     private val drawPile = CardPile(ArrayDeque(32))
     private val middleDeck = TripleDeck(
         mutableListOf(
@@ -36,6 +41,26 @@ class SwimmigTest {
         )
     )
     private val swimming = Swimming(playerList, drawPile, middleDeck)
+
+    /**
+     * Test if the game is not initialized with less than 2 players
+     */
+    @Test
+    fun testInitSwimmingWithOnePlayer() {
+        assertFailsWith<IllegalStateException> {
+            Swimming(shortPlayerList, drawPile, middleDeck)
+        }
+    }
+
+    /**
+     * Test if the game is not initialized with more than 4 players
+     */
+    @Test
+    fun testInitSwimmingWithFivePlayers() {
+        assertFailsWith<IllegalStateException> {
+            Swimming(longPlayerList, drawPile, middleDeck)
+        }
+    }
 
     /**
      * Test if the index of active player changed correctly
