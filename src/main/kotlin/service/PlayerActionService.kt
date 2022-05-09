@@ -49,8 +49,8 @@ class PlayerActionService(rootService: RootService) : AbstractRefreshableService
      * @throws IllegalArgumentException if playerCardIndex or middleCardIndex is out of index
      */
     fun changeOneCard(playerCardIndex: Int, middleCardIndex: Int) {
-        require(playerCardIndex in 0..2)
-        require(middleCardIndex in 0..2)
+        require(playerCardIndex in 0..2) { "playerCardIndex is out of index" }
+        require(middleCardIndex in 0..2) { "middleCardIndex is out of index" }
         game.passCounter = 0
 
         // Cards swap
