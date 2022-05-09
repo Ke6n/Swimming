@@ -26,10 +26,9 @@ class GameService(private val rootService: RootService) : AbstractRefreshableSer
         for (card in player.handDeck.cards) {
             cardsMap[card.suit] = cardsMap.getValue(card.suit) + card.getPoints()
         }
-        val filteredCardsMap = cardsMap.filterValues { it != 0.0 }
-        var maxValue = filteredCardsMap.maxByOrNull { it.value }!!.value
+        var maxValue = cardsMap.maxByOrNull { it.value }!!.value
         // If there are 3 suits in the hand with the same points
-        if (filteredCardsMap.count { it.value == maxValue } == 3) {
+        if (cardsMap.count { it.value == maxValue } == 3) {
             maxValue = 30.5
         }
         return maxValue
@@ -61,6 +60,7 @@ class GameService(private val rootService: RootService) : AbstractRefreshableSer
      * Stop the game, go to main menu
      */
     fun stopGame() {
+        rootService.currentGame = null
         onAllRefreshable { refreshOnStopGame() }
     }
 
