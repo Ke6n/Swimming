@@ -5,7 +5,7 @@ package entity
  */
 class Swimming(val players: List<Player>, val drawPile: CardPile, var middleDeck: TripleDeck) {
     var passCounter: Int = 0
-    var movesRemaining: Int = players.size
+    var movesRemaining: Int = -1
     var hasKnocked: Boolean = false
     var activePlayerIndex: Int = 0
         private set

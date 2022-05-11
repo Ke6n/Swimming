@@ -26,8 +26,8 @@ class GameService(private val rootService: RootService) : AbstractRefreshableSer
         for (card in player.handDeck.cards) {
             cardsMap[card.suit] = cardsMap.getValue(card.suit) + card.getPoints()
         }
-        var maxValue = cardsMap.maxByOrNull { it.value }!!.value
-        // If there are 3 suits in the hand with the same points
+        var maxValue = cardsMap.maxOf { it.value }
+        // If there are 3 cards in the hand with the same points
         if (cardsMap.count { it.value == maxValue } == 3) {
             maxValue = 30.5
         }

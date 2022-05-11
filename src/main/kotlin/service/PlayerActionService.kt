@@ -4,22 +4,14 @@ package service
  * Service layer class that provides the logic for the four possible actions a player
  * can take in the game: pass, knock, change one card and change all cards.
  */
-class PlayerActionService(rootService: RootService) : AbstractRefreshableService() {
-    private val game = rootService.currentGame!!
-
-    /**
-     * Check if game has started
-     */
-    init {
-        checkNotNull(rootService.currentGame) { "No game has started yet." }
-    }
-
+class PlayerActionService(var rootService: RootService) : AbstractRefreshableService() {
 
     /**
      * After the current player passes, the pass counter is incremented by 1.
      * Then this method calls the endTurn() method to handle subsequent actions.
      */
     fun pass() {
+        val game = rootService.currentGame!!
         game.passCounter++
         endTurn()
     }
@@ -30,6 +22,7 @@ class PlayerActionService(rootService: RootService) : AbstractRefreshableService
      * Then this method calls the endTurn() method to handle subsequent actions.
      */
     fun knock() {
+        val game = rootService.currentGame!!
         if (!game.hasKnocked) {
             game.hasKnocked = true
             game.movesRemaining = game.players.size
@@ -49,6 +42,7 @@ class PlayerActionService(rootService: RootService) : AbstractRefreshableService
      * @throws IllegalArgumentException if playerCardIndex or middleCardIndex is out of index
      */
     fun changeOneCard(playerCardIndex: Int, middleCardIndex: Int) {
+        val game = rootService.currentGame!!
         require(playerCardIndex in 0..2) { "playerCardIndex is out of index" }
         require(middleCardIndex in 0..2) { "middleCardIndex is out of index" }
         game.passCounter = 0
@@ -70,6 +64,7 @@ class PlayerActionService(rootService: RootService) : AbstractRefreshableService
      * Then this method calls the endTurn() method to handle subsequent actions.
      */
     fun changeAllCards() {
+        val game = rootService.currentGame!!
         game.passCounter = 0
 
         // Cards swap
@@ -84,6 +79,7 @@ class PlayerActionService(rootService: RootService) : AbstractRefreshableService
      * Decide whether to end the game or the next player's turn
      */
     private fun endTurn() {
+        val game = rootService.currentGame!!
         if (game.hasKnocked) {
             game.movesRemaining--
             onAllRefreshable { refreshOnKnock() }
@@ -104,8 +100,8 @@ class PlayerActionService(rootService: RootService) : AbstractRefreshableService
                 onAllRefreshable { refreshOnEndTurn(true) }
                 return
             }
-            game.changeActivePlayer()
-            onAllRefreshable { refreshOnEndTurn(false) }
         }
+        game.changeActivePlayer()
+        onAllRefreshable { refreshOnEndTurn(false) }
     }
 }

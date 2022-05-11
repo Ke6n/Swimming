@@ -3,6 +3,11 @@ package service
 import entity.Swimming
 import view.Refreshable
 
+/**
+ * Main class of the service layer for the Swimming card game. Provides access
+ * to all other service classes and holds the [currentGame] state for these
+ * services to access.
+ */
 class RootService {
     /**
      * The currently active game. Can be `null`, if no game has started yet.
