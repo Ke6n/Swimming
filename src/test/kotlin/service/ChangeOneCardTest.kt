@@ -82,14 +82,10 @@ class ChangeOneCardTest {
      */
     @Test
     fun testChangeOneCardWithLegalIndex(){
-        changeOneCardTestHelper(0, 0)
-        changeOneCardTestHelper(0, 1)
-        changeOneCardTestHelper(0, 2)
-        changeOneCardTestHelper(1, 0)
-        changeOneCardTestHelper(1, 1)
-        changeOneCardTestHelper(1, 2)
-        changeOneCardTestHelper(2, 0)
-        changeOneCardTestHelper(2, 1)
-        changeOneCardTestHelper(2, 2)
+        for (pcIndex in 0..2){
+            for (mcIndex in 0..2){
+                changeOneCardTestHelper(pcIndex, mcIndex)
+            }
+        }
     }
 }
