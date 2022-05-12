@@ -120,6 +120,21 @@ class StartAndStopGameTest {
     }
 
     /**
+     *  Test if there are duplicate cards in the draw pile
+     */
+    @Test
+    fun testDuplicateCards() {
+        var isDuplicate = false
+        val rootService = RootService()
+        repeat(5) {
+            rootService.gameService.startGame(listOf(playerName1, playerName2))
+            val drawCards = rootService.currentGame!!.drawPile.cardsOnPile
+            if (drawCards.toSet().size != drawCards.size) isDuplicate = true
+        }
+        assertFalse { isDuplicate }
+    }
+
+    /**
      *  Test if the game can be stopped
      */
     @Test
