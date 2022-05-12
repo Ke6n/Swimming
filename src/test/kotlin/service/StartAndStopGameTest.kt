@@ -101,6 +101,25 @@ class StartAndStopGameTest {
     }
 
     /**
+     *  Test if the draw deck shuffled at the start of the game
+     *  (There is a very small probability that the test will fail,
+     *  because the order of the cards may also be the same after multiple shuffles)
+     */
+    @Test
+    fun testStartGameShuffled() {
+        var isShuffled = false
+        val rootService = RootService()
+        val playerNames = listOf(playerName1, playerName2)
+        rootService.gameService.startGame(playerNames)
+        val drawCards1 = rootService.currentGame!!.drawPile.cardsOnPile
+        repeat(5) {
+            rootService.gameService.startGame(playerNames)
+            if (drawCards1 != rootService.currentGame!!.drawPile.cardsOnPile) isShuffled = true
+        }
+        assertTrue { isShuffled }
+    }
+
+    /**
      *  Test if the game can be stopped
      */
     @Test
