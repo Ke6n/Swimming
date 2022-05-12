@@ -11,8 +11,21 @@ class StartAndStopGameTest {
     private val playerName3 = "Ben"
     private val playerName4 = "Yvo"
     private val playerName5 = "Cal"
+    private val playerName6 = ""
 
     private val testRefreshable = TestRefreshable()
+
+    /**
+     *  Test if the game doesn't start with blank player name
+     */
+    @Test
+    fun testStartGameWithBlankName() {
+        val rootService = RootService()
+        val playerNames = listOf(playerName1, playerName6)
+        assertFailsWith<IllegalStateException> {
+            rootService.gameService.startGame(playerNames)
+        }
+    }
 
     /**
      *  Test if the game doesn't start with less than 2 players
@@ -65,8 +78,10 @@ class StartAndStopGameTest {
             assert(3 == it.handDeck.cards.size)
         }
         // Cards in the draw pile: 32 - hand cards of players - middle cards
-        assert(32 - 3*rootService.currentGame!!.players.size - 3
-                == rootService.currentGame!!.drawPile.cardsOnPile.size)
+        assert(
+            32 - 3 * rootService.currentGame!!.players.size - 3
+                    == rootService.currentGame!!.drawPile.cardsOnPile.size
+        )
 
         assertTrue { testRefreshable.refreshOnStartGameCalled }
         testRefreshable.reset()
@@ -76,7 +91,7 @@ class StartAndStopGameTest {
      *  Test if the game starts with 2 - 4 players
      */
     @Test
-    fun testStartGame(){
+    fun testStartGame() {
         // Test if the game starts with 2 players
         startGameTestHelper(listOf(playerName1, playerName2))
         // Test if the game starts with 3 players
@@ -89,7 +104,7 @@ class StartAndStopGameTest {
      *  Test if the game can be stopped
      */
     @Test
-    fun testStopGame(){
+    fun testStopGame() {
         // Game has not started yet.
         val rootService = RootService()
         rootService.addRefreshable(testRefreshable)
