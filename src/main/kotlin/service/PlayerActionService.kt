@@ -4,7 +4,7 @@ package service
  * Service layer class that provides the logic for the four possible actions a player
  * can take in the game: pass, knock, change one card and change all cards.
  */
-class PlayerActionService(var rootService: RootService) : AbstractRefreshableService() {
+class PlayerActionService(private var rootService: RootService) : AbstractRefreshableService() {
 
     /**
      * After the current player passes, the pass counter is incremented by 1.
