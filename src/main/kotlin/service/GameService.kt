@@ -16,6 +16,10 @@ class GameService(private val rootService: RootService) : AbstractRefreshableSer
      * @return score: The score of this player
      */
     fun calculatePlayerScore(player: Player): Double {
+        // If there are 3 cards in the hand with the same points
+        if (player.handDeck.cards.count { it.value == player.handDeck.cards[0].value } == 3) {
+            return 30.5
+        }
         // a Map with Key = CardSuit, Value= sum of card points with the same suit
         val cardsMap = mutableMapOf(
             CardSuit.CLUBS to 0.0,
@@ -26,12 +30,7 @@ class GameService(private val rootService: RootService) : AbstractRefreshableSer
         for (card in player.handDeck.cards) {
             cardsMap[card.suit] = cardsMap.getValue(card.suit) + card.getPoints()
         }
-        var maxValue = cardsMap.maxOf { it.value }
-        // If there are 3 cards in the hand with the same points
-        if (cardsMap.count { it.value == maxValue } == 3) {
-            maxValue = 30.5
-        }
-        return maxValue
+        return cardsMap.maxOf { it.value }
     }
 
     /**

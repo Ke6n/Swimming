@@ -1,6 +1,5 @@
 package view
 
-import service.RootService
 import tools.aqua.bgw.components.uicomponents.Button
 import tools.aqua.bgw.components.uicomponents.Label
 import tools.aqua.bgw.core.MenuScene
@@ -12,24 +11,24 @@ import java.awt.Color
  * This menu scene is shown after application start and if the "Quit" button
  * is clicked in the PauseMenuScene or in the ScoreBoardMenuScene
  */
-class StartMenuScene(private val rootService: RootService) : MenuScene(), Refreshable {
+class StartMenuScene : MenuScene(){
     var playerCount: Int = 2
 
     private val helloLabel = Label(
         width = 1200,
         height = 300,
         posX = 360,
-        posY = 0,
+        posY = 50,
         text = "Swimming",
-        font = Font(size = 150, Color.LIGHT_GRAY, fontStyle = Font.FontStyle.ITALIC),
+        font = Font(size = 160, Color.LIGHT_GRAY, fontStyle = Font.FontStyle.ITALIC, fontWeight = Font.FontWeight.BOLD),
     )
     private val helloLabelShadow = Label(
         width = 1200,
         height = 300,
-        posX = 368,
-        posY = 8,
+        posX = 370,
+        posY = 60,
         text = "Swimming",
-        font = Font(size = 150, Color.DARK_GRAY, fontStyle = Font.FontStyle.ITALIC),
+        font = Font(size = 160, Color.DARK_GRAY, fontStyle = Font.FontStyle.ITALIC, fontWeight = Font.FontWeight.BOLD),
     )
 
     val exitButton = Button(
@@ -56,9 +55,9 @@ class StartMenuScene(private val rootService: RootService) : MenuScene(), Refres
         text = "2",
         font = Font(size = 40, color = Color.WHITE)
     ).apply {
-        visual = ColorVisual(70, 30, 93)
+        visual = ColorVisual(90, 50, 103)
         onMouseClicked = {
-            visual = ColorVisual(70, 30, 93)
+            visual = ColorVisual(90, 50, 103)
             resetColor(2)
             playerCount = 2
         }
@@ -72,7 +71,7 @@ class StartMenuScene(private val rootService: RootService) : MenuScene(), Refres
     ).apply {
         visual = ColorVisual(55, 15, 78)
         onMouseClicked = {
-            visual = ColorVisual(70, 30, 93)
+            visual = ColorVisual(90, 50, 103)
             resetColor(3)
             playerCount = 3
         }
@@ -86,7 +85,7 @@ class StartMenuScene(private val rootService: RootService) : MenuScene(), Refres
     ).apply {
         visual = ColorVisual(55, 15, 78)
         onMouseClicked = {
-            visual = ColorVisual(70, 30, 93)
+            visual = ColorVisual(90, 50, 103)
             resetColor(4)
             playerCount = 4
         }
