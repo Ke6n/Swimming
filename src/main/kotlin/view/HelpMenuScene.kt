@@ -30,7 +30,7 @@ class HelpMenuScene : MenuScene() {
         width = 1160, height = 620,
         posX = 380, posY = 230,
         font = Font(size = 25, color = Color.WHITE),
-        text = "1. The game is played by 2-4 players in hot seat mode\n\n" +
+        text = "1. The game is played by 2-4 players in hot seat mode.\n\n" +
                 "2. Click on the hand deck to flip to the front.\n\n" +
                 "3. The current player has 4 optional actions in his turn:\n" +
                 "\t- Change one card: Choose a card from the hand and a card from the middle and click \"change\n" +
