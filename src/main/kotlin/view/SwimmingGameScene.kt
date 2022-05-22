@@ -314,7 +314,11 @@ class SwimmingGameScene(private val rootService: RootService) : BoardGameScene(1
         if (!hasGameEnded) {
             val game = rootService.currentGame!!
             val cardImageLoader = CardImageLoader()
-            handDeck.clear()
+            middleCardIndex = -1
+            playerCardIndex = -1
+            handCardsSelected.replaceAll { false }
+            middleCardsSelected.replaceAll { false }
+            initializeTripleDeckView(game.middleDeck, middleDeck, middleCardsSelected, false, cardImageLoader)
             initializeTripleDeckView(
                 game.players[game.activePlayerIndex].handDeck, handDeck, handCardsSelected, true,
                 cardImageLoader, cardHeight = 226, cardWidth = 156
