@@ -21,17 +21,18 @@ class HelpMenuScene : MenuScene() {
 
     private val headlineLabel = Label(
         width = 1200, height = 100,
-        posX = 360, posY = 150,
+        posX = 360, posY = 120,
         text = "- How To Play -",
         font = Font(size = 80, color = Color.WHITE)
     )
 
     private val helpTextLabel = Label(
-        width = 1160, height = 600,
-        posX = 380, posY = 250,
+        width = 1160, height = 620,
+        posX = 380, posY = 230,
         font = Font(size = 25, color = Color.WHITE),
-        text = "1. Click on the hand deck to flip to the front.\n\n" +
-                "2. The current player has 4 optional actions:\n" +
+        text = "1. The game is played by 2-4 players in hot seat mode\n\n" +
+                "2. Click on the hand deck to flip to the front.\n\n" +
+                "3. The current player has 4 optional actions in his turn:\n" +
                 "\t- Change one card: Choose a card from the hand and a card from the middle and click \"change\n" +
                 "one card\" button.\n" +
                 "\t- Change all cards: Swap all hand cards of the current player with all middle cards with click\n" +
@@ -42,7 +43,7 @@ class HelpMenuScene : MenuScene() {
                 "\t- knock: If a player thinks they have a good hand, they can knock. Just as with passing," +
                 " he\ndoesn't exchange any cards. After a player has knocked, all other players have exactly one more turn.\n" +
                 "After that the game is over.\n\n" +
-                "3.The aim of the game is to have the most points in your hand at the end." +
+                "4.The aim of the game is to have the most points in your hand at the end." +
                 " The highest total of one of\nthe four suits is counted, with {jack, queen, king} each counting as " +
                 "10 points and the ace as 11 points.\nThis means that a maximum of 31 points (ace plus two cards " +
                 "with 10 points each) is possible. Three\ncards of the same number or face value are worth 30.5 points."
