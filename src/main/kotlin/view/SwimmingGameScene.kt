@@ -33,8 +33,8 @@ class SwimmingGameScene(private val rootService: RootService) : BoardGameScene(1
 
     private val drawPile = LabeledStackView(posX = 1295, posY = 270, "draw pile", stackRotation = 315.0)
     private val discardPile = LabeledStackView(posX = 495, posY = 270, "discard pile", stackRotation = 45.0)
-    private var middleDeck = TripleDeckView(posX = 735, posY = 350, width = 500)
-    var handDeck = TripleDeckView(posX = 690, posY = 720, spacing = 36.0).apply {
+    private var middleDeck = TripleDeckView(posX = 745, posY = 350, width = 500)
+    var handDeck = TripleDeckView(height=226, posX = 690, posY = 720, spacing = 36.0).apply {
         onMouseClicked = {
             // Cards flip
             this.forEach { cv ->
@@ -52,7 +52,6 @@ class SwimmingGameScene(private val rootService: RootService) : BoardGameScene(1
                         }
                     )
                 }
-
             }
         }
     }
