@@ -73,6 +73,7 @@ class SopraApplication : BoardGameApplication("SoPra Game"), Refreshable {
                     gameScene.playerNames = playerNames
                     rootService.gameService.startGame(playerNames)
                     gameScene.components.forEach { it.isVisible = true }
+                    gameScene.remainingTurnsLabel.isVisible = false
                     showGameScene(gameScene)
                 }
             }
