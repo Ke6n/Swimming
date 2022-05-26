@@ -5,7 +5,6 @@ import entity.CardPile
 import entity.TripleDeck
 import service.CardImageLoader
 import service.RootService
-import tools.aqua.bgw.animation.FlipAnimation
 import tools.aqua.bgw.animation.MovementAnimation
 import tools.aqua.bgw.components.container.LinearLayout
 import tools.aqua.bgw.components.gamecomponentviews.CardView
@@ -39,18 +38,7 @@ class SwimmingGameScene(private val rootService: RootService) : BoardGameScene(1
             // Cards flip
             this.forEach { cv ->
                 if (cv.currentSide == CardView.CardSide.BACK) {
-                    playAnimation(
-                        FlipAnimation(
-                            componentView = cv,
-                            fromVisual = cv.backVisual,
-                            toVisual = cv.frontVisual,
-                            duration = 100
-                        ).apply {
-                            onFinished = {
-                                cv.showFront()
-                            }
-                        }
-                    )
+                    cv.showFront()
                 }
             }
         }
