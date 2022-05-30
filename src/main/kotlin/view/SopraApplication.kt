@@ -145,7 +145,7 @@ class SopraApplication : BoardGameApplication("SoPra Game"), Refreshable {
     }
 
     /**
-     * Game restarts with the same players after the "Restart" button clicked
+     * Game ends and go to start menu scene after the "Quit" button clicked
      */
     private fun quit(){
         rootService.gameService.stopGame()

@@ -33,14 +33,10 @@ class SwimmingGameScene(private val rootService: RootService) : BoardGameScene(1
     private val drawPile = LabeledStackView(posX = 1295, posY = 270, "draw pile", stackRotation = 315.0)
     private val discardPile = LabeledStackView(posX = 495, posY = 270, "discard pile", stackRotation = 45.0)
     private var middleDeck = TripleDeckView(posX = 745, posY = 350, width = 500)
-    var handDeck = TripleDeckView(height=226, posX = 690, posY = 720, spacing = 36.0).apply {
+    var handDeck = TripleDeckView(height = 226, posX = 690, posY = 720, spacing = 36.0).apply {
         onMouseClicked = {
             // Cards flip
-            this.forEach { cv ->
-                if (cv.currentSide == CardView.CardSide.BACK) {
-                    cv.showFront()
-                }
-            }
+            this.forEach { cv -> cv.showFront() }
         }
     }
         private set
@@ -248,7 +244,6 @@ class SwimmingGameScene(private val rootService: RootService) : BoardGameScene(1
     override fun refreshOnPass() {
         val game = rootService.currentGame!!
         val cardImageLoader = CardImageLoader()
-        initializeTripleDeckView(game.middleDeck, middleDeck, middleCardsSelected, false, cardImageLoader)
         initializeStackView(game.discardPile, discardPile, cardImageLoader)
         initializeStackView(game.drawPile, drawPile, cardImageLoader)
     }
@@ -257,7 +252,8 @@ class SwimmingGameScene(private val rootService: RootService) : BoardGameScene(1
      * perform refreshes that are necessary after knocked
      */
     override fun refreshOnKnock() {
-        remainingTurnsLabel.text = "     !! Knocked !!     \nRemaining Turns: ${rootService.currentGame!!.movesRemaining}"
+        remainingTurnsLabel.text =
+            "     !! Knocked !!     \nRemaining Turns: ${rootService.currentGame!!.movesRemaining}"
         remainingTurnsLabel.isVisible = true
     }
 
